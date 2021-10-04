@@ -1,0 +1,97 @@
+
+
+1)create database cummins;
+2)show databases;
+3)use cummins;
+4)create table emp(empid int primary key, ename varchar(20));
+5)desc dept;
+6)insert into emp values(1,"srushti"); 
+7)select * from emp;
+7) create view item2 as select * from item;
+
+8)create table dept(deptid int primary key, dname varchar(20),empid int, foreign key(empid) references emp(empid));
+
+9) drop [databasename];
+10)show tables;
+11)drop table [tablename];
+11) rename table [oldname] to [newname];
+12) cancel query : \c
+13) select version()
+14) select current_date();
+15)aggregate : sum(), avg(), min(), max()
+
+16)create table employee(id int auto_increment primary key , name varchar(20));   // auto increment
+
+ insert into employee values(null,"kjshdf");
+
+17)   ways to add foreign key:
+
+
+1)  step1:  alter table purchase add cno int;
+
+   step 2:  alter table purchase
+    -> add foreign key(cno)
+    -> references customer(cno);
+
+2)  alter table purchase add constraint ino foreign key(ino) references item(ino)
+
+3) create table dept(deptid int primary key, dname varchar(20),empid int, foreign key(empid) references emp(empid));
+
+
+18)  Alter queries
+
+// for table description:::::
+
+1) alter table [tablename] modify [columnname] int not null;   
+2) alter table [tablename] modify [columnname] varchar(20) not null;
+3) alter table [tablename] change [oldname] [newname] varchar(20);
+
+
+4)alter table [tablename] modify column [columnname] int auto_increment ;
+
+5) alter table [tablename] add cno int;
+6)alter table [tablename] add foreign key(cno) references customer(cno);
+7)alter table [tablename] add constraint ino foreign key(ino) references item(ino);
+8) alter table [tablename] drop foreign key [foreignkeyname];
+9)alter table [tablename] drop [columnname];
+10)alter table [tablename] auto_increment=1001;
+11) alter view [viewname] as select * from [tablename];
+
+
+19) Update 
+
+1)update [tablename] set [columnname]=value where [condition];
+
+
+20) Drop queries
+
+1)drop table [tablename];
+2)drop database [databasename];
+
+
+21)Delete queries;
+
+delete from [tablename] where [condition];
+
+
+22) Date and Time
+
+1)select current_date(),current_time() ;
+2) select current_timestamp;
+3)select date_format(pdate,'%M %d %Y %r') from purchase;
+4)select date_format(pdate,'%d %m %y %r') from purchase;
+5) select date_format(pdate,' %M %D %Y ') from purchase;
+6)select date_format(pdate,' %M %D %y %T ') from purchase;
+7)select * from purchase where pdate="1 april 2020";
+8) select * from purchase where year(pdate)=2005 and month(pdate)=10;
+
+
+
+
+21)   sequence
+
+select * from item    where itype="chocolate" order by icount;
+
+
+where-> order by
+group by-> order by
