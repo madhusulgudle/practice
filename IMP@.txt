@@ -1,0 +1,686 @@
+
+mysql> select * from item,customer;
++-----+------------+-----------+--------+--------+-----+---------+---------+------------+
+| ino | iname      | itype     | iprice | icount | cno | cname   | ccity   | cmobile    |
++-----+------------+-----------+--------+--------+-----+---------+---------+------------+
+|   1 | kitkat     | chocolate |     17 |     95 |   1 | Srushti | Pune    | 8978675678 |
+|   2 | perk       | chocolate |     17 |    195 |   1 | Srushti | Pune    | 8978675678 |
+|   3 | 5star      | chocolate |     17 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   4 | cadboury   | chocolate |     22 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   5 | milk       | grocery   |     28 |     95 |   1 | Srushti | Pune    | 8978675678 |
+|   6 | bread      | grocery   |     44 |    195 |   1 | Srushti | Pune    | 8978675678 |
+|   7 | snacks     | grocery   |     17 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   9 | watch      | gadgets   |    580 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|  10 | headphones | gadgets   |    610 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   1 | kitkat     | chocolate |     17 |     95 |   3 | Anshika | Nagpur  | 9876234567 |
+|   2 | perk       | chocolate |     17 |    195 |   3 | Anshika | Nagpur  | 9876234567 |
+|   3 | 5star      | chocolate |     17 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   4 | cadboury   | chocolate |     22 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   5 | milk       | grocery   |     28 |     95 |   3 | Anshika | Nagpur  | 9876234567 |
+|   6 | bread      | grocery   |     44 |    195 |   3 | Anshika | Nagpur  | 9876234567 |
+|   7 | snacks     | grocery   |     17 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   9 | watch      | gadgets   |    580 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|  10 | headphones | gadgets   |    610 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   1 | kitkat     | chocolate |     17 |     95 |   4 | Arushi  | Delhi   | 9876237898 |
+|   2 | perk       | chocolate |     17 |    195 |   4 | Arushi  | Delhi   | 9876237898 |
+|   3 | 5star      | chocolate |     17 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   4 | cadboury   | chocolate |     22 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   5 | milk       | grocery   |     28 |     95 |   4 | Arushi  | Delhi   | 9876237898 |
+|   6 | bread      | grocery   |     44 |    195 |   4 | Arushi  | Delhi   | 9876237898 |
+|   7 | snacks     | grocery   |     17 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   9 | watch      | gadgets   |    580 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|  10 | headphones | gadgets   |    610 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   1 | kitkat     | chocolate |     17 |     95 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   2 | perk       | chocolate |     17 |    195 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   3 | 5star      | chocolate |     17 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   4 | cadboury   | chocolate |     22 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   5 | milk       | grocery   |     28 |     95 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   6 | bread      | grocery   |     44 |    195 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   7 | snacks     | grocery   |     17 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   9 | watch      | gadgets   |    580 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|  10 | headphones | gadgets   |    610 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   1 | kitkat     | chocolate |     17 |     95 |   6 | Raj     | Mumbai  | 9872341338 |
+|   2 | perk       | chocolate |     17 |    195 |   6 | Raj     | Mumbai  | 9872341338 |
+|   3 | 5star      | chocolate |     17 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   4 | cadboury   | chocolate |     22 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   5 | milk       | grocery   |     28 |     95 |   6 | Raj     | Mumbai  | 9872341338 |
+|   6 | bread      | grocery   |     44 |    195 |   6 | Raj     | Mumbai  | 9872341338 |
+|   7 | snacks     | grocery   |     17 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   9 | watch      | gadgets   |    580 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|  10 | headphones | gadgets   |    610 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   1 | kitkat     | chocolate |     17 |     95 |   7 | Arunita | Kolkata | 8976234455 |
+|   2 | perk       | chocolate |     17 |    195 |   7 | Arunita | Kolkata | 8976234455 |
+|   3 | 5star      | chocolate |     17 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   4 | cadboury   | chocolate |     22 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   5 | milk       | grocery   |     28 |     95 |   7 | Arunita | Kolkata | 8976234455 |
+|   6 | bread      | grocery   |     44 |    195 |   7 | Arunita | Kolkata | 8976234455 |
+|   7 | snacks     | grocery   |     17 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   9 | watch      | gadgets   |    580 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|  10 | headphones | gadgets   |    610 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   1 | kitkat     | chocolate |     17 |     95 |   8 | Shreya  | Kolkata | 8998877655 |
+|   2 | perk       | chocolate |     17 |    195 |   8 | Shreya  | Kolkata | 8998877655 |
+|   3 | 5star      | chocolate |     17 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   4 | cadboury   | chocolate |     22 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   5 | milk       | grocery   |     28 |     95 |   8 | Shreya  | Kolkata | 8998877655 |
+|   6 | bread      | grocery   |     44 |    195 |   8 | Shreya  | Kolkata | 8998877655 |
+|   7 | snacks     | grocery   |     17 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   9 | watch      | gadgets   |    580 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|  10 | headphones | gadgets   |    610 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   1 | kitkat     | chocolate |     17 |     95 |   9 | Sham    | Kolkata | 7898564534 |
+|   2 | perk       | chocolate |     17 |    195 |   9 | Sham    | Kolkata | 7898564534 |
+|   3 | 5star      | chocolate |     17 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   4 | cadboury   | chocolate |     22 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   5 | milk       | grocery   |     28 |     95 |   9 | Sham    | Kolkata | 7898564534 |
+|   6 | bread      | grocery   |     44 |    195 |   9 | Sham    | Kolkata | 7898564534 |
+|   7 | snacks     | grocery   |     17 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   9 | watch      | gadgets   |    580 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|  10 | headphones | gadgets   |    610 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  10 | Shaan   | Kolkata | 7898564594 |
+|   2 | perk       | chocolate |     17 |    195 |  10 | Shaan   | Kolkata | 7898564594 |
+|   3 | 5star      | chocolate |     17 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   4 | cadboury   | chocolate |     22 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   5 | milk       | grocery   |     28 |     95 |  10 | Shaan   | Kolkata | 7898564594 |
+|   6 | bread      | grocery   |     44 |    195 |  10 | Shaan   | Kolkata | 7898564594 |
+|   7 | snacks     | grocery   |     17 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   9 | watch      | gadgets   |    580 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|  10 | headphones | gadgets   |    610 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   1 | kitkat     | chocolate |     17 |     95 |  11 | Sam     | Kolkata | 7890564594 |
+|   2 | perk       | chocolate |     17 |    195 |  11 | Sam     | Kolkata | 7890564594 |
+|   3 | 5star      | chocolate |     17 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   4 | cadboury   | chocolate |     22 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   5 | milk       | grocery   |     28 |     95 |  11 | Sam     | Kolkata | 7890564594 |
+|   6 | bread      | grocery   |     44 |    195 |  11 | Sam     | Kolkata | 7890564594 |
+|   7 | snacks     | grocery   |     17 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   9 | watch      | gadgets   |    580 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|  10 | headphones | gadgets   |    610 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   1 | kitkat     | chocolate |     17 |     95 |  12 | Madhu   | Latur   | 7899804534 |
+|   2 | perk       | chocolate |     17 |    195 |  12 | Madhu   | Latur   | 7899804534 |
+|   3 | 5star      | chocolate |     17 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   5 | milk       | grocery   |     28 |     95 |  12 | Madhu   | Latur   | 7899804534 |
+|   6 | bread      | grocery   |     44 |    195 |  12 | Madhu   | Latur   | 7899804534 |
+|   7 | snacks     | grocery   |     17 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   9 | watch      | gadgets   |    580 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|  10 | headphones | gadgets   |    610 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  13 | Srushti | Latur   | 9999804534 |
+|   2 | perk       | chocolate |     17 |    195 |  13 | Srushti | Latur   | 9999804534 |
+|   3 | 5star      | chocolate |     17 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   5 | milk       | grocery   |     28 |     95 |  13 | Srushti | Latur   | 9999804534 |
+|   6 | bread      | grocery   |     44 |    195 |  13 | Srushti | Latur   | 9999804534 |
+|   7 | snacks     | grocery   |     17 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   9 | watch      | gadgets   |    580 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|  10 | headphones | gadgets   |    610 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  14 | Bhushan | Latur   | 9899804534 |
+|   2 | perk       | chocolate |     17 |    195 |  14 | Bhushan | Latur   | 9899804534 |
+|   3 | 5star      | chocolate |     17 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   5 | milk       | grocery   |     28 |     95 |  14 | Bhushan | Latur   | 9899804534 |
+|   6 | bread      | grocery   |     44 |    195 |  14 | Bhushan | Latur   | 9899804534 |
+|   7 | snacks     | grocery   |     17 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   9 | watch      | gadgets   |    580 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|  10 | headphones | gadgets   |    610 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  15 | Bhumi   | Beed    | 9776655534 |
+|   2 | perk       | chocolate |     17 |    195 |  15 | Bhumi   | Beed    | 9776655534 |
+|   3 | 5star      | chocolate |     17 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   5 | milk       | grocery   |     28 |     95 |  15 | Bhumi   | Beed    | 9776655534 |
+|   6 | bread      | grocery   |     44 |    195 |  15 | Bhumi   | Beed    | 9776655534 |
+|   7 | snacks     | grocery   |     17 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   9 | watch      | gadgets   |    580 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|  10 | headphones | gadgets   |    610 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
++-----+------------+-----------+--------+--------+-----+---------+---------+------------+
+140 rows in set (0.42 sec)
+
+
+mysql> select * from customer inner join purchase where customer.cno=purchase.cno;
++-----+---------+---------+------------+-----+------------+------+------+------+
+| cno | cname   | ccity   | cmobile    | pno | pdate      | pqty | cno  | ino  |
++-----+---------+---------+------------+-----+------------+------+------+------+
+|   1 | Srushti | Pune    | 8978675678 |   1 | 2021-09-17 |   12 |    1 |    2 |
+|   1 | Srushti | Pune    | 8978675678 |   2 | 2001-02-12 |   12 |    1 |    3 |
+|   4 | Arushi  | Delhi   | 9876237898 |   3 | 2001-02-22 |  122 |    4 |    5 |
+|   5 | Rashi   | Mumbai  | 9876722338 |   4 | 2001-06-22 |  122 |    5 |   10 |
+|   7 | Arunita | Kolkata | 8976234455 |   5 | 2001-06-02 |   12 |    7 |    5 |
+|   8 | Shreya  | Kolkata | 8998877655 |   6 | 2001-06-10 |   12 |    8 |   10 |
+|  13 | Srushti | Latur   | 9999804534 |   7 | 2013-10-12 |   12 |   13 |    8 |
+|  15 | Bhumi   | Beed    | 9776655534 |   8 | 2018-10-12 |   12 |   15 |    8 |
+|  15 | Bhumi   | Beed    | 9776655534 |   9 | 2018-10-12 |   12 |   15 |    6 |
+|  11 | Sam     | Kolkata | 7890564594 |  11 | 2021-12-12 |   12 |   11 |    4 |
+|  10 | Shaan   | Kolkata | 7898564594 |  12 | 2021-02-22 |  100 |   10 |    4 |
+|  10 | Shaan   | Kolkata | 7898564594 |  13 | 2022-12-02 |   15 |   10 |    7 |
++-----+---------+---------+------------+-----+------------+------+------+------+
+12 rows in set (0.16 sec)
+
+
+
+mysql> select * from purchase p where p.cno=1;
++-----+------------+------+------+------+
+| pno | pdate      | pqty | cno  | ino  |
++-----+------------+------+------+------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |
+|   2 | 2001-02-12 |   12 |    1 |    3 |
++-----+------------+------+------+------+
+2 rows in set (0.07 sec)
+
+mysql> select * from purchase p inner join customer c where p.cno=c.cno;;
++-----+------------+------+------+------+-----+---------+---------+------------+
+| pno | pdate      | pqty | cno  | ino  | cno | cname   | ccity   | cmobile    |
++-----+------------+------+------+------+-----+---------+---------+------------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |   1 | Srushti | Pune    | 8978675678 |
+|   2 | 2001-02-12 |   12 |    1 |    3 |   1 | Srushti | Pune    | 8978675678 |
+|   3 | 2001-02-22 |  122 |    4 |    5 |   4 | Arushi  | Delhi   | 9876237898 |
+|   4 | 2001-06-22 |  122 |    5 |   10 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   5 | 2001-06-02 |   12 |    7 |    5 |   7 | Arunita | Kolkata | 8976234455 |
+|   6 | 2001-06-10 |   12 |    8 |   10 |   8 | Shreya  | Kolkata | 8998877655 |
+|   7 | 2013-10-12 |   12 |   13 |    8 |  13 | Srushti | Latur   | 9999804534 |
+|   8 | 2018-10-12 |   12 |   15 |    8 |  15 | Bhumi   | Beed    | 9776655534 |
+|   9 | 2018-10-12 |   12 |   15 |    6 |  15 | Bhumi   | Beed    | 9776655534 |
+|  11 | 2021-12-12 |   12 |   11 |    4 |  11 | Sam     | Kolkata | 7890564594 |
+|  12 | 2021-02-22 |  100 |   10 |    4 |  10 | Shaan   | Kolkata | 7898564594 |
+|  13 | 2022-12-02 |   15 |   10 |    7 |  10 | Shaan   | Kolkata | 7898564594 |
++-----+------------+------+------+------+-----+---------+---------+------------+
+12 rows in set (0.00 sec)
+
+
+
+mysql> select * from purchase p inner join customer c where p.cno=c.cno;
++-----+------------+------+------+------+-----+---------+---------+------------+
+| pno | pdate      | pqty | cno  | ino  | cno | cname   | ccity   | cmobile    |
++-----+------------+------+------+------+-----+---------+---------+------------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |   1 | Srushti | Pune    | 8978675678 |
+|   2 | 2001-02-12 |   12 |    1 |    3 |   1 | Srushti | Pune    | 8978675678 |
+|   3 | 2001-02-22 |  122 |    4 |    5 |   4 | Arushi  | Delhi   | 9876237898 |
+|   4 | 2001-06-22 |  122 |    5 |   10 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   5 | 2001-06-02 |   12 |    7 |    5 |   7 | Arunita | Kolkata | 8976234455 |
+|   6 | 2001-06-10 |   12 |    8 |   10 |   8 | Shreya  | Kolkata | 8998877655 |
+|   7 | 2013-10-12 |   12 |   13 |    8 |  13 | Srushti | Latur   | 9999804534 |
+|   8 | 2018-10-12 |   12 |   15 |    8 |  15 | Bhumi   | Beed    | 9776655534 |
+|   9 | 2018-10-12 |   12 |   15 |    6 |  15 | Bhumi   | Beed    | 9776655534 |
+|  11 | 2021-12-12 |   12 |   11 |    4 |  11 | Sam     | Kolkata | 7890564594 |
+|  12 | 2021-02-22 |  100 |   10 |    4 |  10 | Shaan   | Kolkata | 7898564594 |
+|  13 | 2022-12-02 |   15 |   10 |    7 |  10 | Shaan   | Kolkata | 7898564594 |
++-----+------------+------+------+------+-----+---------+---------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from purchase p inner join customer c on p.cno=c.cno;
++-----+------------+------+------+------+-----+---------+---------+------------+
+| pno | pdate      | pqty | cno  | ino  | cno | cname   | ccity   | cmobile    |
++-----+------------+------+------+------+-----+---------+---------+------------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |   1 | Srushti | Pune    | 8978675678 |
+|   2 | 2001-02-12 |   12 |    1 |    3 |   1 | Srushti | Pune    | 8978675678 |
+|   3 | 2001-02-22 |  122 |    4 |    5 |   4 | Arushi  | Delhi   | 9876237898 |
+|   4 | 2001-06-22 |  122 |    5 |   10 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   5 | 2001-06-02 |   12 |    7 |    5 |   7 | Arunita | Kolkata | 8976234455 |
+|   6 | 2001-06-10 |   12 |    8 |   10 |   8 | Shreya  | Kolkata | 8998877655 |
+|   7 | 2013-10-12 |   12 |   13 |    8 |  13 | Srushti | Latur   | 9999804534 |
+|   8 | 2018-10-12 |   12 |   15 |    8 |  15 | Bhumi   | Beed    | 9776655534 |
+|   9 | 2018-10-12 |   12 |   15 |    6 |  15 | Bhumi   | Beed    | 9776655534 |
+|  11 | 2021-12-12 |   12 |   11 |    4 |  11 | Sam     | Kolkata | 7890564594 |
+|  12 | 2021-02-22 |  100 |   10 |    4 |  10 | Shaan   | Kolkata | 7898564594 |
+|  13 | 2022-12-02 |   15 |   10 |    7 |  10 | Shaan   | Kolkata | 7898564594 |
++-----+------------+------+------+------+-----+---------+---------+------------+
+12 rows in set (0.00 sec)
+
+
+mysql> select * from purchase inner join customer,item where purchase.cno=customer.cno and item.ino=purchase.ino;
++-----+------------+------+------+------+-----+---------+---------+------------+-----+------------+-----------+--------+--------+
+| pno | pdate      | pqty | cno  | ino  | cno | cname   | ccity   | cmobile    | ino | iname      | itype     | iprice | icount |
++-----+------------+------+------+------+-----+---------+---------+------------+-----+------------+-----------+--------+--------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |   1 | Srushti | Pune    | 8978675678 |   2 | perk       | chocolate |     17 |    195 |
+|   2 | 2001-02-12 |   12 |    1 |    3 |   1 | Srushti | Pune    | 8978675678 |   3 | 5star      | chocolate |     17 |     15 |
+|   3 | 2001-02-22 |  122 |    4 |    5 |   4 | Arushi  | Delhi   | 9876237898 |   5 | milk       | grocery   |     28 |     95 |
+|   4 | 2001-06-22 |  122 |    5 |   10 |   5 | Rashi   | Mumbai  | 9876722338 |  10 | headphones | gadgets   |    610 |     15 |
+|   5 | 2001-06-02 |   12 |    7 |    5 |   7 | Arunita | Kolkata | 8976234455 |   5 | milk       | grocery   |     28 |     95 |
+|   6 | 2001-06-10 |   12 |    8 |   10 |   8 | Shreya  | Kolkata | 8998877655 |  10 | headphones | gadgets   |    610 |     15 |
+|   7 | 2013-10-12 |   12 |   13 |    8 |  13 | Srushti | Latur   | 9999804534 |   8 | earbuds    | gadgets   |    510 |     15 |
+|   8 | 2018-10-12 |   12 |   15 |    8 |  15 | Bhumi   | Beed    | 9776655534 |   8 | earbuds    | gadgets   |    510 |     15 |
+|   9 | 2018-10-12 |   12 |   15 |    6 |  15 | Bhumi   | Beed    | 9776655534 |   6 | bread      | grocery   |     44 |    195 |
+|  11 | 2021-12-12 |   12 |   11 |    4 |  11 | Sam     | Kolkata | 7890564594 |   4 | cadboury   | chocolate |     22 |     15 |
+|  12 | 2021-02-22 |  100 |   10 |    4 |  10 | Shaan   | Kolkata | 7898564594 |   4 | cadboury   | chocolate |     22 |     15 |
+|  13 | 2022-12-02 |   15 |   10 |    7 |  10 | Shaan   | Kolkata | 7898564594 |   7 | snacks     | grocery   |     17 |     15 |
++-----+------------+------+------+------+-----+---------+---------+------------+-----+------------+-----------+--------+--------+
+12 rows in set (0.04 sec)
+
+
+mysql> select cname from customer left join purchase on customer.cno=purchase.cno;
++---------+
+| cname   |
++---------+
+| Srushti |
+| Srushti |
+| Anshika |
+| Arushi  |
+| Rashi   |
+| Raj     |
+| Arunita |
+| Shreya  |
+| Sham    |
+| Shaan   |
+| Shaan   |
+| Sam     |
+| Madhu   |
+| Srushti |
+| Bhushan |
+| Bhumi   |
+| Bhumi   |
++---------+
+17 rows in set (0.05 sec)
+
+mysql> select * from customer left join purchase on customer.cno=purchase.cno;
++-----+---------+---------+------------+------+------------+------+------+------+
+| cno | cname   | ccity   | cmobile    | pno  | pdate      | pqty | cno  | ino  |
++-----+---------+---------+------------+------+------------+------+------+------+
+|   1 | Srushti | Pune    | 8978675678 |    1 | 2021-09-17 |   12 |    1 |    2 |
+|   1 | Srushti | Pune    | 8978675678 |    2 | 2001-02-12 |   12 |    1 |    3 |
+|   3 | Anshika | Nagpur  | 9876234567 | NULL | NULL       | NULL | NULL | NULL |
+|   4 | Arushi  | Delhi   | 9876237898 |    3 | 2001-02-22 |  122 |    4 |    5 |
+|   5 | Rashi   | Mumbai  | 9876722338 |    4 | 2001-06-22 |  122 |    5 |   10 |
+|   6 | Raj     | Mumbai  | 9872341338 | NULL | NULL       | NULL | NULL | NULL |
+|   7 | Arunita | Kolkata | 8976234455 |    5 | 2001-06-02 |   12 |    7 |    5 |
+|   8 | Shreya  | Kolkata | 8998877655 |    6 | 2001-06-10 |   12 |    8 |   10 |
+|   9 | Sham    | Kolkata | 7898564534 | NULL | NULL       | NULL | NULL | NULL |
+|  10 | Shaan   | Kolkata | 7898564594 |   12 | 2021-02-22 |  100 |   10 |    4 |
+|  10 | Shaan   | Kolkata | 7898564594 |   13 | 2022-12-02 |   15 |   10 |    7 |
+|  11 | Sam     | Kolkata | 7890564594 |   11 | 2021-12-12 |   12 |   11 |    4 |
+|  12 | Madhu   | Latur   | 7899804534 | NULL | NULL       | NULL | NULL | NULL |
+|  13 | Srushti | Latur   | 9999804534 |    7 | 2013-10-12 |   12 |   13 |    8 |
+|  14 | Bhushan | Latur   | 9899804534 | NULL | NULL       | NULL | NULL | NULL |
+|  15 | Bhumi   | Beed    | 9776655534 |    8 | 2018-10-12 |   12 |   15 |    8 |
+|  15 | Bhumi   | Beed    | 9776655534 |    9 | 2018-10-12 |   12 |   15 |    6 |
++-----+---------+---------+------------+------+------------+------+------+------+
+
+
+mysql> select customer. cno,cname,pqty from customer left join purchase on customer.cno=purchase.cno;
++-----+---------+------+
+| cno | cname   | pqty |
++-----+---------+------+
+|   1 | Srushti |   12 |
+|   1 | Srushti |   12 |
+|   3 | Anshika | NULL |
+|   4 | Arushi  |  122 |
+|   5 | Rashi   |  122 |
+|   6 | Raj     | NULL |
+|   7 | Arunita |   12 |
+|   8 | Shreya  |   12 |
+|   9 | Sham    | NULL |
+|  10 | Shaan   |  100 |
+|  10 | Shaan   |   15 |
+|  11 | Sam     |   12 |
+|  12 | Madhu   | NULL |
+|  13 | Srushti |   12 |
+|  14 | Bhushan | NULL |
+|  15 | Bhumi   |   12 |
+|  15 | Bhumi   |   12 |
++-----+---------+------+
+17 rows in set (0.00 sec)
+
+mysql> select customer. cno,cname,pqty,pdate from customer left join purchase on customer.cno=purchase.cno;
++-----+---------+------+------------+
+| cno | cname   | pqty | pdate      |
++-----+---------+------+------------+
+|   1 | Srushti |   12 | 2021-09-17 |
+|   1 | Srushti |   12 | 2001-02-12 |
+|   3 | Anshika | NULL | NULL       |
+|   4 | Arushi  |  122 | 2001-02-22 |
+|   5 | Rashi   |  122 | 2001-06-22 |
+|   6 | Raj     | NULL | NULL       |
+|   7 | Arunita |   12 | 2001-06-02 |
+|   8 | Shreya  |   12 | 2001-06-10 |
+|   9 | Sham    | NULL | NULL       |
+|  10 | Shaan   |  100 | 2021-02-22 |
+|  10 | Shaan   |   15 | 2022-12-02 |
+|  11 | Sam     |   12 | 2021-12-12 |
+|  12 | Madhu   | NULL | NULL       |
+|  13 | Srushti |   12 | 2013-10-12 |
+|  14 | Bhushan | NULL | NULL       |
+|  15 | Bhumi   |   12 | 2018-10-12 |
+|  15 | Bhumi   |   12 | 2018-10-12 |
++-----+---------+------+------------+
+17 rows in set (0.00 sec)
+
+mysql> select customer. cno,cname,pqty,pdate from customer right join purchase on customer.cno=purchase.cno;
++------+---------+------+------------+
+| cno  | cname   | pqty | pdate      |
++------+---------+------+------------+
+|    1 | Srushti |   12 | 2021-09-17 |
+|    1 | Srushti |   12 | 2001-02-12 |
+|    4 | Arushi  |  122 | 2001-02-22 |
+|    5 | Rashi   |  122 | 2001-06-22 |
+|    7 | Arunita |   12 | 2001-06-02 |
+|    8 | Shreya  |   12 | 2001-06-10 |
+|   13 | Srushti |   12 | 2013-10-12 |
+|   15 | Bhumi   |   12 | 2018-10-12 |
+|   15 | Bhumi   |   12 | 2018-10-12 |
+|   11 | Sam     |   12 | 2021-12-12 |
+|   10 | Shaan   |  100 | 2021-02-22 |
+|   10 | Shaan   |   15 | 2022-12-02 |
++------+---------+------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from customer right join purchase on customer.cno=purchase.cno;
++------+---------+---------+------------+-----+------------+------+------+------+
+| cno  | cname   | ccity   | cmobile    | pno | pdate      | pqty | cno  | ino  |
++------+---------+---------+------------+-----+------------+------+------+------+
+|    1 | Srushti | Pune    | 8978675678 |   1 | 2021-09-17 |   12 |    1 |    2 |
+|    1 | Srushti | Pune    | 8978675678 |   2 | 2001-02-12 |   12 |    1 |    3 |
+|    4 | Arushi  | Delhi   | 9876237898 |   3 | 2001-02-22 |  122 |    4 |    5 |
+|    5 | Rashi   | Mumbai  | 9876722338 |   4 | 2001-06-22 |  122 |    5 |   10 |
+|    7 | Arunita | Kolkata | 8976234455 |   5 | 2001-06-02 |   12 |    7 |    5 |
+|    8 | Shreya  | Kolkata | 8998877655 |   6 | 2001-06-10 |   12 |    8 |   10 |
+|   13 | Srushti | Latur   | 9999804534 |   7 | 2013-10-12 |   12 |   13 |    8 |
+|   15 | Bhumi   | Beed    | 9776655534 |   8 | 2018-10-12 |   12 |   15 |    8 |
+|   15 | Bhumi   | Beed    | 9776655534 |   9 | 2018-10-12 |   12 |   15 |    6 |
+|   11 | Sam     | Kolkata | 7890564594 |  11 | 2021-12-12 |   12 |   11 |    4 |
+|   10 | Shaan   | Kolkata | 7898564594 |  12 | 2021-02-22 |  100 |   10 |    4 |
+|   10 | Shaan   | Kolkata | 7898564594 |  13 | 2022-12-02 |   15 |   10 |    7 |
++------+---------+---------+------------+-----+------------+------+------+------+
+12 rows in set (0.00 sec)
+
+mysql> select * from customer right join purchase on customer.cno=purchase.pno;
++------+---------+---------+------------+-----+------------+------+------+------+
+| cno  | cname   | ccity   | cmobile    | pno | pdate      | pqty | cno  | ino  |
++------+---------+---------+------------+-----+------------+------+------+------+
+|    1 | Srushti | Pune    | 8978675678 |   1 | 2021-09-17 |   12 |    1 |    2 |
+| NULL | NULL    | NULL    |       NULL |   2 | 2001-02-12 |   12 |    1 |    3 |
+|    3 | Anshika | Nagpur  | 9876234567 |   3 | 2001-02-22 |  122 |    4 |    5 |
+|    4 | Arushi  | Delhi   | 9876237898 |   4 | 2001-06-22 |  122 |    5 |   10 |
+|    5 | Rashi   | Mumbai  | 9876722338 |   5 | 2001-06-02 |   12 |    7 |    5 |
+|    6 | Raj     | Mumbai  | 9872341338 |   6 | 2001-06-10 |   12 |    8 |   10 |
+|    7 | Arunita | Kolkata | 8976234455 |   7 | 2013-10-12 |   12 |   13 |    8 |
+|    8 | Shreya  | Kolkata | 8998877655 |   8 | 2018-10-12 |   12 |   15 |    8 |
+|    9 | Sham    | Kolkata | 7898564534 |   9 | 2018-10-12 |   12 |   15 |    6 |
+|   11 | Sam     | Kolkata | 7890564594 |  11 | 2021-12-12 |   12 |   11 |    4 |
+|   12 | Madhu   | Latur   | 7899804534 |  12 | 2021-02-22 |  100 |   10 |    4 |
+|   13 | Srushti | Latur   | 9999804534 |  13 | 2022-12-02 |   15 |   10 |    7 |
++------+---------+---------+------------+-----+------------+------+------+------+
+12 rows in set (0.00 sec)
+
+mysql> select * from item cross join customer;
++-----+------------+-----------+--------+--------+-----+---------+---------+------------+
+| ino | iname      | itype     | iprice | icount | cno | cname   | ccity   | cmobile    |
++-----+------------+-----------+--------+--------+-----+---------+---------+------------+
+|   1 | kitkat     | chocolate |     17 |     95 |   1 | Srushti | Pune    | 8978675678 |
+|   2 | perk       | chocolate |     17 |    195 |   1 | Srushti | Pune    | 8978675678 |
+|   3 | 5star      | chocolate |     17 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   4 | cadboury   | chocolate |     22 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   5 | milk       | grocery   |     28 |     95 |   1 | Srushti | Pune    | 8978675678 |
+|   6 | bread      | grocery   |     44 |    195 |   1 | Srushti | Pune    | 8978675678 |
+|   7 | snacks     | grocery   |     17 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   9 | watch      | gadgets   |    580 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|  10 | headphones | gadgets   |    610 |     15 |   1 | Srushti | Pune    | 8978675678 |
+|   1 | kitkat     | chocolate |     17 |     95 |   3 | Anshika | Nagpur  | 9876234567 |
+|   2 | perk       | chocolate |     17 |    195 |   3 | Anshika | Nagpur  | 9876234567 |
+|   3 | 5star      | chocolate |     17 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   4 | cadboury   | chocolate |     22 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   5 | milk       | grocery   |     28 |     95 |   3 | Anshika | Nagpur  | 9876234567 |
+|   6 | bread      | grocery   |     44 |    195 |   3 | Anshika | Nagpur  | 9876234567 |
+|   7 | snacks     | grocery   |     17 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   9 | watch      | gadgets   |    580 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|  10 | headphones | gadgets   |    610 |     15 |   3 | Anshika | Nagpur  | 9876234567 |
+|   1 | kitkat     | chocolate |     17 |     95 |   4 | Arushi  | Delhi   | 9876237898 |
+|   2 | perk       | chocolate |     17 |    195 |   4 | Arushi  | Delhi   | 9876237898 |
+|   3 | 5star      | chocolate |     17 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   4 | cadboury   | chocolate |     22 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   5 | milk       | grocery   |     28 |     95 |   4 | Arushi  | Delhi   | 9876237898 |
+|   6 | bread      | grocery   |     44 |    195 |   4 | Arushi  | Delhi   | 9876237898 |
+|   7 | snacks     | grocery   |     17 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   9 | watch      | gadgets   |    580 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|  10 | headphones | gadgets   |    610 |     15 |   4 | Arushi  | Delhi   | 9876237898 |
+|   1 | kitkat     | chocolate |     17 |     95 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   2 | perk       | chocolate |     17 |    195 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   3 | 5star      | chocolate |     17 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   4 | cadboury   | chocolate |     22 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   5 | milk       | grocery   |     28 |     95 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   6 | bread      | grocery   |     44 |    195 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   7 | snacks     | grocery   |     17 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   9 | watch      | gadgets   |    580 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|  10 | headphones | gadgets   |    610 |     15 |   5 | Rashi   | Mumbai  | 9876722338 |
+|   1 | kitkat     | chocolate |     17 |     95 |   6 | Raj     | Mumbai  | 9872341338 |
+|   2 | perk       | chocolate |     17 |    195 |   6 | Raj     | Mumbai  | 9872341338 |
+|   3 | 5star      | chocolate |     17 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   4 | cadboury   | chocolate |     22 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   5 | milk       | grocery   |     28 |     95 |   6 | Raj     | Mumbai  | 9872341338 |
+|   6 | bread      | grocery   |     44 |    195 |   6 | Raj     | Mumbai  | 9872341338 |
+|   7 | snacks     | grocery   |     17 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   9 | watch      | gadgets   |    580 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|  10 | headphones | gadgets   |    610 |     15 |   6 | Raj     | Mumbai  | 9872341338 |
+|   1 | kitkat     | chocolate |     17 |     95 |   7 | Arunita | Kolkata | 8976234455 |
+|   2 | perk       | chocolate |     17 |    195 |   7 | Arunita | Kolkata | 8976234455 |
+|   3 | 5star      | chocolate |     17 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   4 | cadboury   | chocolate |     22 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   5 | milk       | grocery   |     28 |     95 |   7 | Arunita | Kolkata | 8976234455 |
+|   6 | bread      | grocery   |     44 |    195 |   7 | Arunita | Kolkata | 8976234455 |
+|   7 | snacks     | grocery   |     17 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   9 | watch      | gadgets   |    580 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|  10 | headphones | gadgets   |    610 |     15 |   7 | Arunita | Kolkata | 8976234455 |
+|   1 | kitkat     | chocolate |     17 |     95 |   8 | Shreya  | Kolkata | 8998877655 |
+|   2 | perk       | chocolate |     17 |    195 |   8 | Shreya  | Kolkata | 8998877655 |
+|   3 | 5star      | chocolate |     17 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   4 | cadboury   | chocolate |     22 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   5 | milk       | grocery   |     28 |     95 |   8 | Shreya  | Kolkata | 8998877655 |
+|   6 | bread      | grocery   |     44 |    195 |   8 | Shreya  | Kolkata | 8998877655 |
+|   7 | snacks     | grocery   |     17 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   9 | watch      | gadgets   |    580 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|  10 | headphones | gadgets   |    610 |     15 |   8 | Shreya  | Kolkata | 8998877655 |
+|   1 | kitkat     | chocolate |     17 |     95 |   9 | Sham    | Kolkata | 7898564534 |
+|   2 | perk       | chocolate |     17 |    195 |   9 | Sham    | Kolkata | 7898564534 |
+|   3 | 5star      | chocolate |     17 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   4 | cadboury   | chocolate |     22 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   5 | milk       | grocery   |     28 |     95 |   9 | Sham    | Kolkata | 7898564534 |
+|   6 | bread      | grocery   |     44 |    195 |   9 | Sham    | Kolkata | 7898564534 |
+|   7 | snacks     | grocery   |     17 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   9 | watch      | gadgets   |    580 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|  10 | headphones | gadgets   |    610 |     15 |   9 | Sham    | Kolkata | 7898564534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  10 | Shaan   | Kolkata | 7898564594 |
+|   2 | perk       | chocolate |     17 |    195 |  10 | Shaan   | Kolkata | 7898564594 |
+|   3 | 5star      | chocolate |     17 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   4 | cadboury   | chocolate |     22 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   5 | milk       | grocery   |     28 |     95 |  10 | Shaan   | Kolkata | 7898564594 |
+|   6 | bread      | grocery   |     44 |    195 |  10 | Shaan   | Kolkata | 7898564594 |
+|   7 | snacks     | grocery   |     17 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   9 | watch      | gadgets   |    580 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|  10 | headphones | gadgets   |    610 |     15 |  10 | Shaan   | Kolkata | 7898564594 |
+|   1 | kitkat     | chocolate |     17 |     95 |  11 | Sam     | Kolkata | 7890564594 |
+|   2 | perk       | chocolate |     17 |    195 |  11 | Sam     | Kolkata | 7890564594 |
+|   3 | 5star      | chocolate |     17 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   4 | cadboury   | chocolate |     22 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   5 | milk       | grocery   |     28 |     95 |  11 | Sam     | Kolkata | 7890564594 |
+|   6 | bread      | grocery   |     44 |    195 |  11 | Sam     | Kolkata | 7890564594 |
+|   7 | snacks     | grocery   |     17 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   9 | watch      | gadgets   |    580 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|  10 | headphones | gadgets   |    610 |     15 |  11 | Sam     | Kolkata | 7890564594 |
+|   1 | kitkat     | chocolate |     17 |     95 |  12 | Madhu   | Latur   | 7899804534 |
+|   2 | perk       | chocolate |     17 |    195 |  12 | Madhu   | Latur   | 7899804534 |
+|   3 | 5star      | chocolate |     17 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   5 | milk       | grocery   |     28 |     95 |  12 | Madhu   | Latur   | 7899804534 |
+|   6 | bread      | grocery   |     44 |    195 |  12 | Madhu   | Latur   | 7899804534 |
+|   7 | snacks     | grocery   |     17 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   9 | watch      | gadgets   |    580 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|  10 | headphones | gadgets   |    610 |     15 |  12 | Madhu   | Latur   | 7899804534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  13 | Srushti | Latur   | 9999804534 |
+|   2 | perk       | chocolate |     17 |    195 |  13 | Srushti | Latur   | 9999804534 |
+|   3 | 5star      | chocolate |     17 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   5 | milk       | grocery   |     28 |     95 |  13 | Srushti | Latur   | 9999804534 |
+|   6 | bread      | grocery   |     44 |    195 |  13 | Srushti | Latur   | 9999804534 |
+|   7 | snacks     | grocery   |     17 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   9 | watch      | gadgets   |    580 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|  10 | headphones | gadgets   |    610 |     15 |  13 | Srushti | Latur   | 9999804534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  14 | Bhushan | Latur   | 9899804534 |
+|   2 | perk       | chocolate |     17 |    195 |  14 | Bhushan | Latur   | 9899804534 |
+|   3 | 5star      | chocolate |     17 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   5 | milk       | grocery   |     28 |     95 |  14 | Bhushan | Latur   | 9899804534 |
+|   6 | bread      | grocery   |     44 |    195 |  14 | Bhushan | Latur   | 9899804534 |
+|   7 | snacks     | grocery   |     17 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   9 | watch      | gadgets   |    580 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|  10 | headphones | gadgets   |    610 |     15 |  14 | Bhushan | Latur   | 9899804534 |
+|   1 | kitkat     | chocolate |     17 |     95 |  15 | Bhumi   | Beed    | 9776655534 |
+|   2 | perk       | chocolate |     17 |    195 |  15 | Bhumi   | Beed    | 9776655534 |
+|   3 | 5star      | chocolate |     17 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   4 | cadboury   | chocolate |     22 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   5 | milk       | grocery   |     28 |     95 |  15 | Bhumi   | Beed    | 9776655534 |
+|   6 | bread      | grocery   |     44 |    195 |  15 | Bhumi   | Beed    | 9776655534 |
+|   7 | snacks     | grocery   |     17 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   8 | earbuds    | gadgets   |    510 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|   9 | watch      | gadgets   |    580 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
+|  10 | headphones | gadgets   |    610 |     15 |  15 | Bhumi   | Beed    | 9776655534 |
++-----+------------+-----------+--------+--------+-----+---------+---------+------------+
+140 rows in set (0.00 sec)
+
+mysql> select a.cno, p.ino from customer as a inner join purchase as p on a.cno=p.cno;
++-----+------+
+| cno | ino  |
++-----+------+
+|   1 |    2 |
+|   1 |    3 |
+|   4 |    5 |
+|   5 |   10 |
+|   7 |    5 |
+|   8 |   10 |
+|  13 |    8 |
+|  15 |    8 |
+|  15 |    6 |
+|  11 |    4 |
+|  10 |    4 |
+|  10 |    7 |
++-----+------+
+12 rows in set (0.00 sec)
+
+mysql> select a.cno, p.ino from customer as a inner join purchase as p using(cno);
++-----+------+
+| cno | ino  |
++-----+------+
+|   1 |    2 |
+|   1 |    3 |
+|   4 |    5 |
+|   5 |   10 |
+|   7 |    5 |
+|   8 |   10 |
+|  13 |    8 |
+|  15 |    8 |
+|  15 |    6 |
+|  11 |    4 |
+|  10 |    4 |
+|  10 |    7 |
++-----+------+
+12 rows in set (0.00 sec)
+
+mysql> select * from purchase group by cno having cno=1;
++-----+------------+------+------+------+
+| pno | pdate      | pqty | cno  | ino  |
++-----+------------+------+------+------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |
++-----+------------+------+------+------+
+1 row in set (0.08 sec)
+
+mysql> select * from purchase group by cno;
++-----+------------+------+------+------+
+| pno | pdate      | pqty | cno  | ino  |
++-----+------------+------+------+------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |
+|   3 | 2001-02-22 |  122 |    4 |    5 |
+|   4 | 2001-06-22 |  122 |    5 |   10 |
+|   5 | 2001-06-02 |   12 |    7 |    5 |
+|   6 | 2001-06-10 |   12 |    8 |   10 |
+|  12 | 2021-02-22 |  100 |   10 |    4 |
+|  11 | 2021-12-12 |   12 |   11 |    4 |
+|   7 | 2013-10-12 |   12 |   13 |    8 |
+|   8 | 2018-10-12 |   12 |   15 |    8 |
++-----+------------+------+------+------+
+9 rows in set (0.00 sec)
+
+mysql> select * from purchase group by pqty;
++-----+------------+------+------+------+
+| pno | pdate      | pqty | cno  | ino  |
++-----+------------+------+------+------+
+|   1 | 2021-09-17 |   12 |    1 |    2 |
+|   3 | 2001-02-22 |  122 |    4 |    5 |
+|  12 | 2021-02-22 |  100 |   10 |    4 |
+|  13 | 2022-12-02 |   15 |   10 |    7 |
++-----+------------+------+------+------+
+4 rows in set (0.04 sec)
+
+
+mysql> select count(*),pqty from purchase group by pqty;
++----------+------+
+| count(*) | pqty |
++----------+------+
+|        8 |   12 |
+|        2 |  122 |
+|        1 |  100 |
+|        1 |   15 |
++----------+------+
+4 rows in set (0.00 sec)
+
+
+
+mysql> select count(*),pqty from purchase group by pqty having pqty=12;
++----------+------+
+| count(*) | pqty |
++----------+------+
+|        8 |   12 |
++----------+------+
+
+
+
+
+mysql> desc purchase;
++-------+--------+------+-----+---------+----------------+
+| Field | Type   | Null | Key | Default | Extra          |
++-------+--------+------+-----+---------+----------------+
+| pno   | int    | NO   | PRI | NULL    | auto_increment |
+| pdate | date   | YES  |     | NULL    |                |
+| pqty  | bigint | YES  |     | NULL    |                |
+| cno   | int    | YES  | MUL | NULL    |                |
+| ino   | int    | YES  | MUL | NULL    |                |
++-------+--------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+mysql> alter table purchase modify cno int not null;
+Query OK, 0 rows affected (1.79 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc purchase;
++-------+--------+------+-----+---------+----------------+
+| Field | Type   | Null | Key | Default | Extra          |
++-------+--------+------+-----+---------+----------------+
+| pno   | int    | NO   | PRI | NULL    | auto_increment |
+| pdate | date   | YES  |     | NULL    |                |
+| pqty  | bigint | YES  |     | NULL    |                |
+| cno   | int    | NO   | MUL | NULL    |                |
+| ino   | int    | YES  | MUL | NULL    |                |
++-------+--------+------+-----+---------+----------------+
+5 rows in set (0.03 sec)
+
+
