@@ -1,0 +1,550 @@
+mysql> use dmslab;
+Database changed
+mysql> delimiter //
+mysql> create procedure print_name(in n int)
+    -> begin
+    -> declare count int;
+    -> set count=0;
+    -> while count<n do
+    -> select 'Aarushi';
+    -> set count=count+1;
+    -> end while;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.54 sec)
+
+mysql> delimiter ;
+mysql> call print_name(10);
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.05 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.06 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.08 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.10 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.12 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.14 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.15 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.17 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.18 sec)
+
++---------+
+| Aarushi |
++---------+
+| Aarushi |
++---------+
+1 row in set (0.20 sec)
+
+Query OK, 0 rows affected (0.22 sec)
+
+
+---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+-----------------------------------------Class finding procedure without cursor-----------------------------------------
+
+
+mysql> delimiter //
+mysql> create procedure compute_class(in roll int)
+    -> begin
+    -> declare mks int;
+    -> select total_marks into mks from student where rollno=roll;
+    -> if mks<=1500 and mks>990 then
+    -> update student set class='Distinction' where rollno=roll;
+    -> elseif mks<=990 and mks>900 then
+    -> update student set class='First Class' where rollno=roll;
+    -> elseif mks<=900 and mks>825 then
+    -> update student set class='Higher Second Class' where rollno=roll;
+    -> elseif mks<=825 and mks>600 then
+    -> update student set class='Second Class' where rollno=roll;
+    -> elseif mks<=600 then
+    -> update student set class='Fail' where rollno=roll;
+    -> end if;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> call compute_class(1)//
+Query OK, 1 row affected (0.17 sec)
+
+mysql> call compute_class(2)//
+Query OK, 1 row affected (0.15 sec)
+
+mysql> call compute_class(3)//
+Query OK, 1 row affected (0.17 sec)
+
+mysql> call compute_class(4)//
+Query OK, 1 row affected (0.09 sec)
+
+mysql> call compute_class(5)//
+Query OK, 1 row affected (0.42 sec)
+
+mysql> call compute_class(6)//
+Query OK, 1 row affected (0.11 sec)
+
+mysql> call compute_class(7)//
+Query OK, 1 row affected (0.21 sec)
+
+mysql> call compute_class(8)//
+Query OK, 1 row affected (0.07 sec)
+
+mysql> call compute_class(9)//
+Query OK, 1 row affected (0.06 sec)
+
+mysql> call compute_class(10)//
+Query OK, 1 row affected (0.45 sec)
+
+mysql> select * from student//
++--------+----------+-------------+---------------------+
+| rollno | sname    | total_marks | class               |
++--------+----------+-------------+---------------------+
+|      1 | Priya    |        1200 | Distinction         |
+|      2 | Raavi    |         500 | Fail                |
+|      3 | Radheya  |        1400 | Distinction         |
+|      4 | Abhiram  |        1350 | Distinction         |
+|      5 | Ira      |         680 | Second Class        |
+|      6 | Hrithik  |         850 | Higher Second Class |
+|      7 | Trupti   |        1000 | Distinction         |
+|      8 | Shrenika |        1290 | Distinction         |
+|      9 | Anurag   |        1100 | Distinction         |
+|     10 | Deepika  |        1500 | Distinction         |
++--------+----------+-------------+---------------------+
+10 rows in set (0.00 sec)
+
+mysql> create procedure update_price(in ino int, in newprice decimal(6,2))
+    -> begin
+    -> declare continue HANDLER FOR SQLSTATE'02000' SELECT 'Cannot find record' As ERRmsg;
+    -> update item set i_price=newprice where i_no=ino;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.49 sec)
+
+mysql> select * from item//
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |    5.00 |     200 |
+| 1003 | Pencils              | Stationary  |    3.00 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> call update_price(1003,3.50)//
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from item//
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    3.50 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> call update_price(1020,3.50)//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from book//
++------+-------+-----------+------+------------+--------+
+| BNo  | BName | Publisher | cost | DOP        | status |
++------+-------+-----------+------+------------+--------+
+| 1001 | C++   | abc       |  500 | 2015-01-20 | I      |
+| 1002 | C++   | abc       |  500 | 2015-01-20 | I      |
+| 1003 | C++   | abc       |  500 | 2015-01-20 | R      |
+| 1004 | C++   | abc       |  500 | 2015-01-20 | R      |
+| 1005 | Java  | pqr       | 1500 | 2000-07-01 | I      |
+| 1006 | Java  | pqr       | 1500 | 2000-07-01 | R      |
+| 1007 | Java  | pqr       | 1500 | 2000-07-01 | R      |
+| 1008 | Java  | pqr       | 1500 | 2000-07-01 | R      |
+| 1009 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1010 | DBMS  | lmn       | 2000 | 2003-11-01 | I      |
+| 1011 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1012 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1013 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1014 | CN    | efg       | 2000 | 2013-05-01 | R      |
+| 1015 | CN    | efg       | 2000 | 2013-05-01 | I      |
+| 1016 | CN    | efg       | 2000 | 2013-05-01 | R      |
++------+-------+-----------+------+------------+--------+
+16 rows in set (0.17 sec)
+
+mysql> select * from issuereturn//
++--------+------+------------+-----------+------+
+| Mem_ID | BNo  | Issue_Dt   | Return_Dt | fine |
++--------+------+------------+-----------+------+
+|      1 | 1012 | 2021-09-26 | NULL      | NULL |
+|      2 | 1012 | 2021-09-15 | NULL      | NULL |
+|      3 | 1001 | 2021-10-04 | NULL      | NULL |
+|      1 | 1002 | 2021-10-08 | NULL      | NULL |
+|      4 | 1013 | 2021-09-30 | NULL      | NULL |
+|      4 | 1013 | 2021-08-12 | NULL      | NULL |
+|      5 | 1004 | 2021-09-22 | NULL      | NULL |
++--------+------+------------+-----------+------+
+7 rows in set (0.10 sec)
+
+mysql> create procedure book_return(in memberid int, in bookno int, in idate date)
+    -> begin
+    -> declare days int;
+    -> declare amt int;
+    -> declare continue handler for sqlstate'02000' select 'Sorry, could not find any such record!' as Error;
+    -> select datediff(sysdate(),issue_dt) into days from issuereturn where mem_id=memberid and bno=bookno and issue_dt=idate;
+    ->  if days <=15 then
+    -> set amt=0;
+    -> update issuereturn set fine=amt where mem_id=memberid and bno=bookno and issue_dt=idate;
+    -> update issuereturn set return_dt=sysdate() where mem_id=memberid and bno=bookno and issue_dt=idate;
+    -> update book set status='R' where bno=bookno;
+    -> select 'Successful Update';
+    -> end if;
+    -> if days > 15 and days <=30 then
+    -> set amt=5*(days-15);
+    -> update issuereturn set fine=amt where mem_id=memberid and bno=bookno and issue_dt=idate;
+    -> update issuereturn set return_dt=sysdate() where mem_id=memberid and bno=bookno and issue_dt=idate;
+    -> update book set status='R' where bno=bookno;
+    -> select 'Successful Update';
+    -> end if;
+    -> if days > 30 then
+    -> set amt=75;
+    -> set amt=amt+(days-30)*50;
+    -> update issuereturn set fine=amt where mem_id=memberid and bno=bookno and issue_dt=idate;
+    -> update issuereturn set return_dt=sysdate() where mem_id=memberid and bno=bookno and issue_dt=idate;
+    -> update book set status='R' where bno=bookno;
+    -> select 'Successful Update';
+    -> end if;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> call book_return(6,2012,'2021-09-26')//
++----------------------------------------+
+| Error                                  |
++----------------------------------------+
+| Sorry, could not find any such record! |
++----------------------------------------+
+1 row in set (0.06 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call book_return(1,1012,'2021-09-26')//
++-------------------+
+| Successful Update |
++-------------------+
+| Successful Update |
++-------------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call book_return(2,1005,'2021-09-15')//
++-------------------+
+| Successful Update |
++-------------------+
+| Successful Update |
++-------------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call book_return(3,1001,'2021-10-04')//
++-------------------+
+| Successful Update |
++-------------------+
+| Successful Update |
++-------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call book_return(1,1002,'2021-10-08')//
++-------------------+
+| Successful Update |
++-------------------+
+| Successful Update |
++-------------------+
+1 row in set (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call book_return(4,1010,'2021-09-30')//
++-------------------+
+| Successful Update |
++-------------------+
+| Successful Update |
++-------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call book_return(4,1015,'2021-08-12')//
++-------------------+
+| Successful Update |
++-------------------+
+| Successful Update |
++-------------------+
+1 row in set (0.12 sec)
+
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> call book_return(5,1004,'2021-09-22')//
++-------------------+
+| Successful Update |
++-------------------+
+| Successful Update |
++-------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from issuereturn//
++--------+------+------------+------------+------+
+| Mem_ID | BNo  | Issue_Dt   | Return_Dt  | fine |
++--------+------+------------+------------+------+
+|      1 | 1012 | 2021-09-26 | 2021-10-10 |    0 |
+|      2 | 1005 | 2021-09-15 | 2021-10-10 |   50 |
+|      3 | 1001 | 2021-10-04 | 2021-10-10 |    0 |
+|      1 | 1002 | 2021-10-08 | 2021-10-10 |    0 |
+|      4 | 1010 | 2021-09-30 | 2021-10-10 |    0 |
+|      4 | 1015 | 2021-08-12 | 2021-10-10 | 1525 |
+|      5 | 1004 | 2021-09-22 | 2021-10-10 |   15 |
++--------+------+------------+------------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from book//
++------+-------+-----------+------+------------+--------+
+| BNo  | BName | Publisher | cost | DOP        | status |
++------+-------+-----------+------+------------+--------+
+| 1001 | C++   | abc       |  500 | 2015-01-20 | R      |
+| 1002 | C++   | abc       |  500 | 2015-01-20 | R      |
+| 1003 | C++   | abc       |  500 | 2015-01-20 | R      |
+| 1004 | C++   | abc       |  500 | 2015-01-20 | R      |
+| 1005 | Java  | pqr       | 1500 | 2000-07-01 | R      |
+| 1006 | Java  | pqr       | 1500 | 2000-07-01 | R      |
+| 1007 | Java  | pqr       | 1500 | 2000-07-01 | R      |
+| 1008 | Java  | pqr       | 1500 | 2000-07-01 | R      |
+| 1009 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1010 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1011 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1012 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1013 | DBMS  | lmn       | 2000 | 2003-11-01 | R      |
+| 1014 | CN    | efg       | 2000 | 2013-05-01 | R      |
+| 1015 | CN    | efg       | 2000 | 2013-05-01 | R      |
+| 1016 | CN    | efg       | 2000 | 2013-05-01 | R      |
++------+-------+-----------+------+------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> create function count_classes(className varchar(20))
+    -> returns int
+    -> language sql
+    -> deterministic
+    -> begin
+    -> declare class_count int;
+    -> set class_count=0;
+    -> select count(*) into class_count from student where class=className;
+    -> return class_count;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> select * from student//
++--------+----------+-------------+---------------------+
+| rollno | sname    | total_marks | class               |
++--------+----------+-------------+---------------------+
+|      1 | Priya    |        1200 | Distinction         |
+|      2 | Raavi    |         500 | Fail                |
+|      3 | Radheya  |        1400 | Distinction         |
+|      4 | Abhiram  |        1350 | Distinction         |
+|      5 | Ira      |         680 | Second Class        |
+|      6 | Hrithik  |         850 | Higher Second Class |
+|      7 | Trupti   |        1000 | Distinction         |
+|      8 | Shrenika |        1290 | Distinction         |
+|      9 | Anurag   |        1100 | Distinction         |
+|     10 | Deepika  |        1500 | Distinction         |
++--------+----------+-------------+---------------------+
+10 rows in set (0.03 sec)
+
+mysql> select 'Distinction',count_classes('Distinction')//
++-------------+------------------------------+
+| Distinction | count_classes('Distinction') |
++-------------+------------------------------+
+| Distinction |                            7 |
++-------------+------------------------------+
+1 row in set (0.04 sec)
+
+mysql> select 'Higher Second Class',count_classes('Higher second class')//
++---------------------+--------------------------------------+
+| Higher Second Class | count_classes('Higher second class') |
++---------------------+--------------------------------------+
+| Higher Second Class |                                    1 |
++---------------------+--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select 'Second Class',count_classes('Second class')//
++--------------+-------------------------------+
+| Second Class | count_classes('Second class') |
++--------------+-------------------------------+
+| Second Class |                             1 |
++--------------+-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select 'Fail',count_classes('Fail')//
++------+-----------------------+
+| Fail | count_classes('Fail') |
++------+-----------------------+
+| Fail |                     1 |
++------+-----------------------+
+1 row in set (0.00 sec)
+
+
+---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+-----------------------------------------Class finding procedure with cursor-----------------------------------------
+mysql> create procedure Find_Class()
+    -> begin
+    -> declare roll int;
+    -> declare score int;
+    -> declare done int default 0;
+    -> declare s_cursor cursor for select rollno,total_marks from student;
+    -> declare continue handler for not found set done=1;
+    -> open s_cursor;
+    -> l1:loop
+    -> if done then
+    -> leave l1;
+    -> end if;
+    -> fetch s_cursor into roll,score;
+    -> if score<=1500 and score>990 then
+    -> update student set class='Distinction' where rollno=roll;
+    -> end if;
+    -> if score<=990 and score>900 then
+    -> update student set class='First Class' where rollno=roll;
+    -> end if;
+    -> if score<=900 and score>825 then
+    -> update student set class='Higher Second Class' where rollno=roll;
+    -> end if;
+    -> if score<=825 and score>600 then
+    -> update student set class='Second Class' where rollno=roll;
+    -> end if;
+    -> if score<=600 then
+    -> update student set class='Fail' where rollno=roll;
+    -> end if;
+    -> end loop l1;
+    -> close s_cursor;
+    -> select 'Updated Successfully!';
+    -> end
+    -> //
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> select * from student //
++--------+----------+-------------+-------+
+| rollno | sname    | total_marks | class |
++--------+----------+-------------+-------+
+|      1 | Priya    |        1200 | NULL  |
+|      2 | Raavi    |         500 | NULL  |
+|      3 | Radheya  |        1400 | NULL  |
+|      4 | Abhiram  |        1350 | NULL  |
+|      5 | Ira      |         680 | NULL  |
+|      6 | Hrithik  |         850 | NULL  |
+|      7 | Trupti   |        1000 | NULL  |
+|      8 | Shrenika |        1290 | NULL  |
+|      9 | Anurag   |        1100 | NULL  |
+|     10 | Deepika  |        1500 | NULL  |
++--------+----------+-------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> call find_class()//
++-----------------------+
+| Updated Successfully! |
++-----------------------+
+| Updated Successfully! |
++-----------------------+
+1 row in set (1.29 sec)
+
+Query OK, 0 rows affected (1.30 sec)
+
+mysql> select * from student //
++--------+----------+-------------+---------------------+
+| rollno | sname    | total_marks | class               |
++--------+----------+-------------+---------------------+
+|      1 | Priya    |        1200 | Distinction         |
+|      2 | Raavi    |         500 | Fail                |
+|      3 | Radheya  |        1400 | Distinction         |
+|      4 | Abhiram  |        1350 | Distinction         |
+|      5 | Ira      |         680 | Second Class        |
+|      6 | Hrithik  |         850 | Higher Second Class |
+|      7 | Trupti   |        1000 | Distinction         |
+|      8 | Shrenika |        1290 | Distinction         |
+|      9 | Anurag   |        1100 | Distinction         |
+|     10 | Deepika  |        1500 | Distinction         |
++--------+----------+-------------+---------------------+
+10 rows in set (0.00 sec)
