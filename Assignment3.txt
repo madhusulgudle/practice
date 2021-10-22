@@ -1,0 +1,852 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| b61                |
+| demo               |
+| dmslab             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.07 sec)
+
+mysql> use dmslab;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_dmslab |
++------------------+
+| customer         |
+| item             |
+| purchase         |
++------------------+
+3 rows in set (0.32 sec)
+
+mysql> select * from customer;
++------+-------------+------------+------------+
+| c_no | c_name      | c_city     | c_mobile   |
++------+-------------+------------+------------+
+|  702 | Ragini      | Pune       | 8556456525 |
+|  703 | Pradnya     | Pune       | 9456456556 |
+|  704 | Abhiraj     | Pune       | 9552256550 |
+|  705 | Rohit       | Pune       | 9411256550 |
+|  706 | Roshni      | Nasik      | 7311256550 |
+|  707 | Kaushal     | Amravati   | 8529256545 |
+|  708 | Raunak      | Mumbai     | 8566256500 |
+|  709 | Aparna      | Nagpur     | 9422256589 |
+|  710 | Aashna      | Dhule      | 9467256581 |
+|  711 | Rashi       | Mumbai     | 7167254533 |
+|  712 | Yashika     | Aurangabad | 7867254504 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |
+|  716 | Malini      | Satara     | 8900876789 |
++------+-------------+------------+------------+
+15 rows in set (0.02 sec)
+
+mysql> select * from item;
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    6.60 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.84 sec)
+
+mysql> select * from purchase;
++------+------------+------------+------+------+
+| p_no | p_date     | p_quantity | c_no | i_no |
++------+------------+------------+------+------+
+|  502 | 2020-10-01 |         10 |  704 | 1005 |
+|  503 | 2020-10-01 |          1 |  703 | 1010 |
+|  504 | 2020-10-02 |          1 |  707 | 1007 |
+|  505 | 2020-10-02 |          1 |  710 | 1011 |
+|  506 | 2020-10-02 |          5 |  702 | 1013 |
+|  507 | 2020-10-05 |          2 |  705 | 1015 |
+|  508 | 2020-10-05 |          3 |  708 | 1012 |
+|  509 | 2020-10-09 |          2 |  706 | 1006 |
+|  510 | 2020-10-09 |         50 |  709 | 1004 |
+|  511 | 2020-10-09 |          5 |  711 | 1002 |
+|  512 | 2021-09-17 |          6 |  715 | 1003 |
+|  513 | 2020-10-15 |         10 |  714 | 1005 |
+|  514 | 2020-10-20 |          1 |  713 | 1007 |
+|  515 | 2020-10-20 |          2 |  712 | 1008 |
+|  516 | 2020-10-20 |          4 |  709 | 1009 |
+|  518 | 2020-10-25 |          1 |  703 | 1010 |
+|  519 | 2020-10-27 |          1 |  709 | 1011 |
++------+------------+------------+------+------+
+17 rows in set (0.05 sec)
+
+mysql> select customer.c_name,purchase.p_no,purchase.p_date,purchase.p_quantity from customer inner join purchase on purchase.c_no=customer.c_no;
++-------------+------+------------+------------+
+| c_name      | p_no | p_date     | p_quantity |
++-------------+------+------------+------------+
+| Abhiraj     |  502 | 2020-10-01 |         10 |
+| Pradnya     |  503 | 2020-10-01 |          1 |
+| Kaushal     |  504 | 2020-10-02 |          1 |
+| Aashna      |  505 | 2020-10-02 |          1 |
+| Ragini      |  506 | 2020-10-02 |          5 |
+| Rohit       |  507 | 2020-10-05 |          2 |
+| Raunak      |  508 | 2020-10-05 |          3 |
+| Roshni      |  509 | 2020-10-09 |          2 |
+| Aparna      |  510 | 2020-10-09 |         50 |
+| Rashi       |  511 | 2020-10-09 |          5 |
+| Samyambrata |  512 | 2021-09-17 |          6 |
+| Prajyot     |  513 | 2020-10-15 |         10 |
+| Swaroop     |  514 | 2020-10-20 |          1 |
+| Yashika     |  515 | 2020-10-20 |          2 |
+| Aparna      |  516 | 2020-10-20 |          4 |
+| Pradnya     |  518 | 2020-10-25 |          1 |
+| Aparna      |  519 | 2020-10-27 |          1 |
++-------------+------+------------+------------+
+17 rows in set (0.00 sec)
+
+mysql> select customer.c_name,item.i_name from customer inner join purchase on customer.c_no=purchase.c_no inner join item on item.i_no=purchase.i_no;
++-------------+---------------------+
+| c_name      | i_name              |
++-------------+---------------------+
+| Abhiraj     | Alpenliebe Gold     |
+| Pradnya     | Dove Shampoo        |
+| Kaushal     | Philips Tubelight   |
+| Aashna      | SkinKraft Facewash  |
+| Ragini      | Parle G Buiscuits   |
+| Rohit       | LaOpala Cup Set     |
+| Raunak      | Haldiram Sev        |
+| Roshni      | Oreva Bulbs         |
+| Aparna      | Kopiko Cappuccino   |
+| Rashi       | Pens                |
+| Samyambrata | Pencils             |
+| Prajyot     | Alpenliebe Gold     |
+| Swaroop     | Philips Tubelight   |
+| Yashika     | Ponds Talcum Powder |
+| Aparna      | Lux Soap            |
+| Pradnya     | Dove Shampoo        |
+| Aparna      | SkinKraft Facewash  |
++-------------+---------------------+
+17 rows in set (0.00 sec)
+
+mysql> select * from customer inner join purchase on customer.c_no=purchase.c_no;
++------+-------------+------------+------------+------+------------+------------+------+------+
+| c_no | c_name      | c_city     | c_mobile   | p_no | p_date     | p_quantity | c_no | i_no |
++------+-------------+------------+------------+------+------------+------------+------+------+
+|  704 | Abhiraj     | Pune       | 9552256550 |  502 | 2020-10-01 |         10 |  704 | 1005 |
+|  703 | Pradnya     | Pune       | 9456456556 |  503 | 2020-10-01 |          1 |  703 | 1010 |
+|  707 | Kaushal     | Amravati   | 8529256545 |  504 | 2020-10-02 |          1 |  707 | 1007 |
+|  710 | Aashna      | Dhule      | 9467256581 |  505 | 2020-10-02 |          1 |  710 | 1011 |
+|  702 | Ragini      | Pune       | 8556456525 |  506 | 2020-10-02 |          5 |  702 | 1013 |
+|  705 | Rohit       | Pune       | 9411256550 |  507 | 2020-10-05 |          2 |  705 | 1015 |
+|  708 | Raunak      | Mumbai     | 8566256500 |  508 | 2020-10-05 |          3 |  708 | 1012 |
+|  706 | Roshni      | Nasik      | 7311256550 |  509 | 2020-10-09 |          2 |  706 | 1006 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  510 | 2020-10-09 |         50 |  709 | 1004 |
+|  711 | Rashi       | Mumbai     | 7167254533 |  511 | 2020-10-09 |          5 |  711 | 1002 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |  512 | 2021-09-17 |          6 |  715 | 1003 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |  513 | 2020-10-15 |         10 |  714 | 1005 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |  514 | 2020-10-20 |          1 |  713 | 1007 |
+|  712 | Yashika     | Aurangabad | 7867254504 |  515 | 2020-10-20 |          2 |  712 | 1008 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  516 | 2020-10-20 |          4 |  709 | 1009 |
+|  703 | Pradnya     | Pune       | 9456456556 |  518 | 2020-10-25 |          1 |  703 | 1010 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  519 | 2020-10-27 |          1 |  709 | 1011 |
++------+-------------+------------+------------+------+------------+------------+------+------+
+17 rows in set (0.00 sec)
+
+mysql> select * from customer left join purchase on customer.c_no=purchase.c_no;
++------+-------------+------------+------------+------+------------+------------+------+------+
+| c_no | c_name      | c_city     | c_mobile   | p_no | p_date     | p_quantity | c_no | i_no |
++------+-------------+------------+------------+------+------------+------------+------+------+
+|  702 | Ragini      | Pune       | 8556456525 |  506 | 2020-10-02 |          5 |  702 | 1013 |
+|  703 | Pradnya     | Pune       | 9456456556 |  503 | 2020-10-01 |          1 |  703 | 1010 |
+|  703 | Pradnya     | Pune       | 9456456556 |  518 | 2020-10-25 |          1 |  703 | 1010 |
+|  704 | Abhiraj     | Pune       | 9552256550 |  502 | 2020-10-01 |         10 |  704 | 1005 |
+|  705 | Rohit       | Pune       | 9411256550 |  507 | 2020-10-05 |          2 |  705 | 1015 |
+|  706 | Roshni      | Nasik      | 7311256550 |  509 | 2020-10-09 |          2 |  706 | 1006 |
+|  707 | Kaushal     | Amravati   | 8529256545 |  504 | 2020-10-02 |          1 |  707 | 1007 |
+|  708 | Raunak      | Mumbai     | 8566256500 |  508 | 2020-10-05 |          3 |  708 | 1012 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  510 | 2020-10-09 |         50 |  709 | 1004 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  516 | 2020-10-20 |          4 |  709 | 1009 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  519 | 2020-10-27 |          1 |  709 | 1011 |
+|  710 | Aashna      | Dhule      | 9467256581 |  505 | 2020-10-02 |          1 |  710 | 1011 |
+|  711 | Rashi       | Mumbai     | 7167254533 |  511 | 2020-10-09 |          5 |  711 | 1002 |
+|  712 | Yashika     | Aurangabad | 7867254504 |  515 | 2020-10-20 |          2 |  712 | 1008 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |  514 | 2020-10-20 |          1 |  713 | 1007 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |  513 | 2020-10-15 |         10 |  714 | 1005 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |  512 | 2021-09-17 |          6 |  715 | 1003 |
+|  716 | Malini      | Satara     | 8900876789 | NULL | NULL       |       NULL | NULL | NULL |
++------+-------------+------------+------------+------+------------+------------+------+------+
+18 rows in set (0.00 sec)
+
+mysql> select * from customer right join purchase on customer.c_no=purchase.c_no;
++------+-------------+------------+------------+------+------------+------------+------+------+
+| c_no | c_name      | c_city     | c_mobile   | p_no | p_date     | p_quantity | c_no | i_no |
++------+-------------+------------+------------+------+------------+------------+------+------+
+|  704 | Abhiraj     | Pune       | 9552256550 |  502 | 2020-10-01 |         10 |  704 | 1005 |
+|  703 | Pradnya     | Pune       | 9456456556 |  503 | 2020-10-01 |          1 |  703 | 1010 |
+|  707 | Kaushal     | Amravati   | 8529256545 |  504 | 2020-10-02 |          1 |  707 | 1007 |
+|  710 | Aashna      | Dhule      | 9467256581 |  505 | 2020-10-02 |          1 |  710 | 1011 |
+|  702 | Ragini      | Pune       | 8556456525 |  506 | 2020-10-02 |          5 |  702 | 1013 |
+|  705 | Rohit       | Pune       | 9411256550 |  507 | 2020-10-05 |          2 |  705 | 1015 |
+|  708 | Raunak      | Mumbai     | 8566256500 |  508 | 2020-10-05 |          3 |  708 | 1012 |
+|  706 | Roshni      | Nasik      | 7311256550 |  509 | 2020-10-09 |          2 |  706 | 1006 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  510 | 2020-10-09 |         50 |  709 | 1004 |
+|  711 | Rashi       | Mumbai     | 7167254533 |  511 | 2020-10-09 |          5 |  711 | 1002 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |  512 | 2021-09-17 |          6 |  715 | 1003 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |  513 | 2020-10-15 |         10 |  714 | 1005 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |  514 | 2020-10-20 |          1 |  713 | 1007 |
+|  712 | Yashika     | Aurangabad | 7867254504 |  515 | 2020-10-20 |          2 |  712 | 1008 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  516 | 2020-10-20 |          4 |  709 | 1009 |
+|  703 | Pradnya     | Pune       | 9456456556 |  518 | 2020-10-25 |          1 |  703 | 1010 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  519 | 2020-10-27 |          1 |  709 | 1011 |
++------+-------------+------------+------------+------+------------+------------+------+------+
+17 rows in set (0.00 sec)
+
+mysql> select c_no from purchase where i_no=(select i_no from item where i_name='Dove Shampoo');
++------+
+| c_no |
++------+
+|  703 |
+|  703 |
++------+
+2 rows in set (0.08 sec)
+
+mysql> select * from purchase;
++------+------------+------------+------+------+
+| p_no | p_date     | p_quantity | c_no | i_no |
++------+------------+------------+------+------+
+|  502 | 2020-10-01 |         10 |  704 | 1005 |
+|  503 | 2020-10-01 |          1 |  703 | 1010 |
+|  504 | 2020-10-02 |          1 |  707 | 1007 |
+|  505 | 2020-10-02 |          1 |  710 | 1011 |
+|  506 | 2020-10-02 |          5 |  702 | 1013 |
+|  507 | 2020-10-05 |          2 |  705 | 1015 |
+|  508 | 2020-10-05 |          3 |  708 | 1012 |
+|  509 | 2020-10-09 |          2 |  706 | 1006 |
+|  510 | 2020-10-09 |         50 |  709 | 1004 |
+|  511 | 2020-10-09 |          5 |  711 | 1002 |
+|  512 | 2021-09-17 |          6 |  715 | 1003 |
+|  513 | 2020-10-15 |         10 |  714 | 1005 |
+|  514 | 2020-10-20 |          1 |  713 | 1007 |
+|  515 | 2020-10-20 |          2 |  712 | 1008 |
+|  516 | 2020-10-20 |          4 |  709 | 1009 |
+|  518 | 2020-10-25 |          1 |  703 | 1010 |
+|  519 | 2020-10-27 |          1 |  709 | 1011 |
++------+------------+------------+------+------+
+17 rows in set (0.00 sec)
+
+mysql> select * from item;
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    6.60 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> select c_name from customer where c_city=(select c_city from customer where c_name='Abhiraj');
++---------+
+| c_name  |
++---------+
+| Ragini  |
+| Pradnya |
+| Abhiraj |
+| Rohit   |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> create table emp(empno int primary key auto_increment,ename varchar(20) not null,address varchar(50) default 'Pune',phno int(10) unique,sal int(6),check (sal>0));
+Query OK, 0 rows affected, 2 warnings (3.32 sec)
+
+mysql> desc emp;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| empno   | int         | NO   | PRI | NULL    | auto_increment |
+| ename   | varchar(20) | NO   |     | NULL    |                |
+| address | varchar(50) | YES  |     | Pune    |                |
+| phno    | int         | YES  | UNI | NULL    |                |
+| sal     | int         | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+5 rows in set (0.13 sec)
+
+mysql> select i_name from item where i_price=(select min(i_price) from item);
++-------------------+
+| i_name            |
++-------------------+
+| Kopiko Cappuccino |
++-------------------+
+1 row in set (0.10 sec)
+
+mysql> select i_name from item where i_price=(select max(i_price) from item);
++----------------------+
+| i_name               |
++----------------------+
+| GoodHomes Dinner Set |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from item;
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    6.60 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> select * from purchase where c_no=702 or c_no=704;
++------+------------+------------+------+------+
+| p_no | p_date     | p_quantity | c_no | i_no |
++------+------------+------------+------+------+
+|  506 | 2020-10-02 |          5 |  702 | 1013 |
+|  502 | 2020-10-01 |         10 |  704 | 1005 |
++------+------------+------------+------+------+
+2 rows in set (0.01 sec)
+
+mysql> select * from customer left join purchase on customer.c_no=purchase.c_no union select * from customer right join purchase on customer.c_no=purchase.c_no;
++------+-------------+------------+------------+------+------------+------------+------+------+
+| c_no | c_name      | c_city     | c_mobile   | p_no | p_date     | p_quantity | c_no | i_no |
++------+-------------+------------+------------+------+------------+------------+------+------+
+|  702 | Ragini      | Pune       | 8556456525 |  506 | 2020-10-02 |          5 |  702 | 1013 |
+|  703 | Pradnya     | Pune       | 9456456556 |  503 | 2020-10-01 |          1 |  703 | 1010 |
+|  703 | Pradnya     | Pune       | 9456456556 |  518 | 2020-10-25 |          1 |  703 | 1010 |
+|  704 | Abhiraj     | Pune       | 9552256550 |  502 | 2020-10-01 |         10 |  704 | 1005 |
+|  705 | Rohit       | Pune       | 9411256550 |  507 | 2020-10-05 |          2 |  705 | 1015 |
+|  706 | Roshni      | Nasik      | 7311256550 |  509 | 2020-10-09 |          2 |  706 | 1006 |
+|  707 | Kaushal     | Amravati   | 8529256545 |  504 | 2020-10-02 |          1 |  707 | 1007 |
+|  708 | Raunak      | Mumbai     | 8566256500 |  508 | 2020-10-05 |          3 |  708 | 1012 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  510 | 2020-10-09 |         50 |  709 | 1004 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  516 | 2020-10-20 |          4 |  709 | 1009 |
+|  709 | Aparna      | Nagpur     | 9422256589 |  519 | 2020-10-27 |          1 |  709 | 1011 |
+|  710 | Aashna      | Dhule      | 9467256581 |  505 | 2020-10-02 |          1 |  710 | 1011 |
+|  711 | Rashi       | Mumbai     | 7167254533 |  511 | 2020-10-09 |          5 |  711 | 1002 |
+|  712 | Yashika     | Aurangabad | 7867254504 |  515 | 2020-10-20 |          2 |  712 | 1008 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |  514 | 2020-10-20 |          1 |  713 | 1007 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |  513 | 2020-10-15 |         10 |  714 | 1005 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |  512 | 2021-09-17 |          6 |  715 | 1003 |
+|  716 | Malini      | Satara     | 8900876789 | NULL | NULL       |       NULL | NULL | NULL |
++------+-------------+------------+------------+------+------------+------------+------+------+
+18 rows in set (0.00 sec)
+
+mysql> create view c_view as select c_no,c_name,c_city from customer;
+Query OK, 0 rows affected (0.61 sec)
+
+mysql> select * from c_view;
++------+-------------+------------+
+| c_no | c_name      | c_city     |
++------+-------------+------------+
+|  702 | Ragini      | Pune       |
+|  703 | Pradnya     | Pune       |
+|  704 | Abhiraj     | Pune       |
+|  705 | Rohit       | Pune       |
+|  706 | Roshni      | Nasik      |
+|  707 | Kaushal     | Amravati   |
+|  708 | Raunak      | Mumbai     |
+|  709 | Aparna      | Nagpur     |
+|  710 | Aashna      | Dhule      |
+|  711 | Rashi       | Mumbai     |
+|  712 | Yashika     | Aurangabad |
+|  713 | Swaroop     | Kolhapur   |
+|  714 | Prajyot     | Ratnagiri  |
+|  715 | Samyambrata | Mumbai     |
+|  716 | Malini      | Satara     |
++------+-------------+------------+
+15 rows in set (0.18 sec)
+
+mysql> desc c_view;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| c_no   | int         | NO   |     | 0       |       |
+| c_name | varchar(20) | NO   |     | NULL    |       |
+| c_city | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.09 sec)
+
+mysql> select * from customer;
++------+-------------+------------+------------+
+| c_no | c_name      | c_city     | c_mobile   |
++------+-------------+------------+------------+
+|  702 | Ragini      | Pune       | 8556456525 |
+|  703 | Pradnya     | Pune       | 9456456556 |
+|  704 | Abhiraj     | Pune       | 9552256550 |
+|  705 | Rohit       | Pune       | 9411256550 |
+|  706 | Roshni      | Nasik      | 7311256550 |
+|  707 | Kaushal     | Amravati   | 8529256545 |
+|  708 | Raunak      | Mumbai     | 8566256500 |
+|  709 | Aparna      | Nagpur     | 9422256589 |
+|  710 | Aashna      | Dhule      | 9467256581 |
+|  711 | Rashi       | Mumbai     | 7167254533 |
+|  712 | Yashika     | Aurangabad | 7867254504 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |
+|  716 | Malini      | Satara     | 8900876789 |
++------+-------------+------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> insert into customer values(null,'Rajeshwari','Ratnagiri',7588956412);
+Query OK, 1 row affected (0.28 sec)
+
+mysql> select * from customer;
++------+-------------+------------+------------+
+| c_no | c_name      | c_city     | c_mobile   |
++------+-------------+------------+------------+
+|  702 | Ragini      | Pune       | 8556456525 |
+|  703 | Pradnya     | Pune       | 9456456556 |
+|  704 | Abhiraj     | Pune       | 9552256550 |
+|  705 | Rohit       | Pune       | 9411256550 |
+|  706 | Roshni      | Nasik      | 7311256550 |
+|  707 | Kaushal     | Amravati   | 8529256545 |
+|  708 | Raunak      | Mumbai     | 8566256500 |
+|  709 | Aparna      | Nagpur     | 9422256589 |
+|  710 | Aashna      | Dhule      | 9467256581 |
+|  711 | Rashi       | Mumbai     | 7167254533 |
+|  712 | Yashika     | Aurangabad | 7867254504 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |
+|  716 | Malini      | Satara     | 8900876789 |
+|  717 | Rajeshwari  | Ratnagiri  | 7588956412 |
++------+-------------+------------+------------+
+16 rows in set (0.00 sec)
+
+mysql> desc customer;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| c_no     | int         | NO   | PRI | NULL    | auto_increment |
+| c_name   | varchar(20) | NO   |     | NULL    |                |
+| c_city   | varchar(20) | YES  |     | NULL    |                |
+| c_mobile | varchar(10) | YES  | UNI | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from c_view;
++------+-------------+------------+
+| c_no | c_name      | c_city     |
++------+-------------+------------+
+|  702 | Ragini      | Pune       |
+|  703 | Pradnya     | Pune       |
+|  704 | Abhiraj     | Pune       |
+|  705 | Rohit       | Pune       |
+|  706 | Roshni      | Nasik      |
+|  707 | Kaushal     | Amravati   |
+|  708 | Raunak      | Mumbai     |
+|  709 | Aparna      | Nagpur     |
+|  710 | Aashna      | Dhule      |
+|  711 | Rashi       | Mumbai     |
+|  712 | Yashika     | Aurangabad |
+|  713 | Swaroop     | Kolhapur   |
+|  714 | Prajyot     | Ratnagiri  |
+|  715 | Samyambrata | Mumbai     |
+|  716 | Malini      | Satara     |
+|  717 | Rajeshwari  | Ratnagiri  |
++------+-------------+------------+
+16 rows in set (0.00 sec)
+
+mysql> create view i_view as select i_no,i_name,i_type,i_price from item;
+Query OK, 0 rows affected (0.67 sec)
+
+mysql> desc i_view;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| i_no    | int          | NO   |     | 0       |       |
+| i_name  | varchar(100) | YES  |     | NULL    |       |
+| i_type  | varchar(20)  | YES  |     | NULL    |       |
+| i_price | decimal(6,2) | NO   |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from i_view;
++------+----------------------+-------------+---------+
+| i_no | i_name               | i_type      | i_price |
++------+----------------------+-------------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |
+| 1002 | Pens                 | Stationary  |   33.00 |
+| 1003 | Pencils              | Stationary  |    6.60 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |
++------+----------------------+-------------+---------+
+15 rows in set (0.04 sec)
+
+mysql> select * from item;
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    6.60 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> insert into item values(null,'Mango Pickle','Food',50.0,100);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from item;
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    6.60 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
+| 1016 | Mango Pickle         | Food        |   50.00 |     100 |
++------+----------------------+-------------+---------+---------+
+16 rows in set (0.00 sec)
+
+mysql> select * from i_view;
++------+----------------------+-------------+---------+
+| i_no | i_name               | i_type      | i_price |
++------+----------------------+-------------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |
+| 1002 | Pens                 | Stationary  |   33.00 |
+| 1003 | Pencils              | Stationary  |    6.60 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |
+| 1016 | Mango Pickle         | Food        |   50.00 |
++------+----------------------+-------------+---------+
+16 rows in set (0.00 sec)
+
+mysql> delete from c_view where c_no=717;
+Query OK, 1 row affected (0.21 sec)
+
+mysql> select * from c_view;
++------+-------------+------------+
+| c_no | c_name      | c_city     |
++------+-------------+------------+
+|  702 | Ragini      | Pune       |
+|  703 | Pradnya     | Pune       |
+|  704 | Abhiraj     | Pune       |
+|  705 | Rohit       | Pune       |
+|  706 | Roshni      | Nasik      |
+|  707 | Kaushal     | Amravati   |
+|  708 | Raunak      | Mumbai     |
+|  709 | Aparna      | Nagpur     |
+|  710 | Aashna      | Dhule      |
+|  711 | Rashi       | Mumbai     |
+|  712 | Yashika     | Aurangabad |
+|  713 | Swaroop     | Kolhapur   |
+|  714 | Prajyot     | Ratnagiri  |
+|  715 | Samyambrata | Mumbai     |
+|  716 | Malini      | Satara     |
++------+-------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from customer;
++------+-------------+------------+------------+
+| c_no | c_name      | c_city     | c_mobile   |
++------+-------------+------------+------------+
+|  702 | Ragini      | Pune       | 8556456525 |
+|  703 | Pradnya     | Pune       | 9456456556 |
+|  704 | Abhiraj     | Pune       | 9552256550 |
+|  705 | Rohit       | Pune       | 9411256550 |
+|  706 | Roshni      | Nasik      | 7311256550 |
+|  707 | Kaushal     | Amravati   | 8529256545 |
+|  708 | Raunak      | Mumbai     | 8566256500 |
+|  709 | Aparna      | Nagpur     | 9422256589 |
+|  710 | Aashna      | Dhule      | 9467256581 |
+|  711 | Rashi       | Mumbai     | 7167254533 |
+|  712 | Yashika     | Aurangabad | 7867254504 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |
+|  716 | Malini      | Satara     | 8900876789 |
++------+-------------+------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> delete from item where i_no=1016;
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from item;
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    6.60 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> select * from i_view;
++------+----------------------+-------------+---------+
+| i_no | i_name               | i_type      | i_price |
++------+----------------------+-------------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |
+| 1002 | Pens                 | Stationary  |   33.00 |
+| 1003 | Pencils              | Stationary  |    6.60 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |
++------+----------------------+-------------+---------+
+15 rows in set (0.00 sec)
+
+mysql> set profiling=1;
+Query OK, 0 rows affected, 1 warning (0.14 sec)
+
+mysql> select * from customer;
++------+-------------+------------+------------+
+| c_no | c_name      | c_city     | c_mobile   |
++------+-------------+------------+------------+
+|  702 | Ragini      | Pune       | 8556456525 |
+|  703 | Pradnya     | Pune       | 9456456556 |
+|  704 | Abhiraj     | Pune       | 9552256550 |
+|  705 | Rohit       | Pune       | 9411256550 |
+|  706 | Roshni      | Nasik      | 7311256550 |
+|  707 | Kaushal     | Amravati   | 8529256545 |
+|  708 | Raunak      | Mumbai     | 8566256500 |
+|  709 | Aparna      | Nagpur     | 9422256589 |
+|  710 | Aashna      | Dhule      | 9467256581 |
+|  711 | Rashi       | Mumbai     | 7167254533 |
+|  712 | Yashika     | Aurangabad | 7867254504 |
+|  713 | Swaroop     | Kolhapur   | 7851254591 |
+|  714 | Prajyot     | Ratnagiri  | 9151254516 |
+|  715 | Samyambrata | Mumbai     | 8351254514 |
+|  716 | Malini      | Satara     | 8900876789 |
++------+-------------+------------+------------+
+15 rows in set (0.01 sec)
+
+mysql> select * from item;
++------+----------------------+-------------+---------+---------+
+| i_no | i_name               | i_type      | i_price | i_count |
++------+----------------------+-------------+---------+---------+
+| 1001 | Notebooks            | Stationary  |  110.00 |     200 |
+| 1002 | Pens                 | Stationary  |   33.00 |     200 |
+| 1003 | Pencils              | Stationary  |    6.60 |     400 |
+| 1004 | Kopiko Cappuccino    | Chocolates  |    2.20 |     500 |
+| 1005 | Alpenliebe Gold      | Chocolates  |    4.40 |     500 |
+| 1006 | Oreva Bulbs          | Electronics |  550.00 |      50 |
+| 1007 | Philips Tubelight    | Electronics |  638.00 |     100 |
+| 1008 | Ponds Talcum Powder  | Cosmetics   |  143.00 |     100 |
+| 1009 | Lux Soap             | Cosmetics   |   79.20 |     100 |
+| 1010 | Dove Shampoo         | Cosmetics   |  171.60 |     100 |
+| 1011 | SkinKraft Facewash   | Cosmetics   |  110.00 |     100 |
+| 1012 | Haldiram Sev         | Snacks      |  110.00 |     200 |
+| 1013 | Parle G Buiscuits    | Snacks      |   55.00 |     200 |
+| 1014 | GoodHomes Dinner Set | Crockery    |  660.00 |      30 |
+| 1015 | LaOpala Cup Set      | Crockery    |  418.00 |      30 |
++------+----------------------+-------------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> select * from c_view;
++------+-------------+------------+
+| c_no | c_name      | c_city     |
++------+-------------+------------+
+|  702 | Ragini      | Pune       |
+|  703 | Pradnya     | Pune       |
+|  704 | Abhiraj     | Pune       |
+|  705 | Rohit       | Pune       |
+|  706 | Roshni      | Nasik      |
+|  707 | Kaushal     | Amravati   |
+|  708 | Raunak      | Mumbai     |
+|  709 | Aparna      | Nagpur     |
+|  710 | Aashna      | Dhule      |
+|  711 | Rashi       | Mumbai     |
+|  712 | Yashika     | Aurangabad |
+|  713 | Swaroop     | Kolhapur   |
+|  714 | Prajyot     | Ratnagiri  |
+|  715 | Samyambrata | Mumbai     |
+|  716 | Malini      | Satara     |
++------+-------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> show profiles;
++----------+------------+------------------------+
+| Query_ID | Duration   | Query                  |
++----------+------------+------------------------+
+|        1 | 0.00983675 | select * from customer |
+|        2 | 0.00044650 | select * from item     |
+|        3 | 0.00054025 | select * from c_view   |
++----------+------------+------------------------+
+4 rows in set, 1 warning (0.00 sec)
+
+mysql> create index ind on emp(ename);
+Query OK, 0 rows affected (2.85 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(1,'abc','addr',1252845789,120000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into emp values(null,'bcd','addr1',1352845789,50000);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select * from emp;
++-------+-------+---------+------------+--------+
+| empno | ename | address | phno       | sal    |
++-------+-------+---------+------------+--------+
+|     1 | abc   | addr    | 1252845789 | 120000 |
+|     2 | bcd   | addr1   | 1352845789 |  50000 |
++-------+-------+---------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> show profiles;
++----------+------------+-------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                       |
++----------+------------+-------------------------------------------------------------+
+|        1 | 0.00983675 | select * from customer                                      |
+|        2 | 0.00044650 | select * from item                                          |
+|        3 | 0.00054025 | select * from c_view                                        |
+|        4 | 2.84684625 | create index ind on emp(ename)                              |
+|        5 | 0.06408850 | insert into emp values(1,'abc','addr',1252845789,120000)    |
+|        6 | 0.17063100 | insert into emp values(null,'bcd','addr1',1352845789,50000) |
+|        7 | 0.00234750 | select * from emp                                           |
++----------+------------+-------------------------------------------------------------+
+9 rows in set, 1 warning (0.00 sec)
+
+mysql> show index from emp\G:
+*************************** 1. row ***************************
+        Table: emp
+   Non_unique: 0
+     Key_name: PRIMARY
+ Seq_in_index: 1
+  Column_name: empno
+    Collation: A
+  Cardinality: 2
+     Sub_part: NULL
+       Packed: NULL
+         Null:
+   Index_type: BTREE
+      Comment:
+Index_comment:
+      Visible: YES
+   Expression: NULL
+*************************** 2. row ***************************
+        Table: emp
+   Non_unique: 0
+     Key_name: phno
+ Seq_in_index: 1
+  Column_name: phno
+    Collation: A
+  Cardinality: 2
+     Sub_part: NULL
+       Packed: NULL
+         Null: YES
+   Index_type: BTREE
+      Comment:
+Index_comment:
+      Visible: YES
+   Expression: NULL
+*************************** 3. row ***************************
+        Table: emp
+   Non_unique: 1
+     Key_name: ind
+ Seq_in_index: 1
+  Column_name: ename
+    Collation: A
+  Cardinality: 2
+     Sub_part: NULL
+       Packed: NULL
+         Null:
+   Index_type: BTREE
+      Comment:
+Index_comment:
+      Visible: YES
+   Expression: NULL
+3 rows in set (0.78 sec)
